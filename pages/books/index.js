@@ -1,33 +1,43 @@
 import React from 'react';
+import Router from 'next/router';
 import {Query} from 'react-apollo';
-import gql from 'graphql-tag';
-
-const ALL_BOOKS_QUERY = gql`
-    query ALL_BOOKS_QUERY {
-        books {
-            id
-            title
-        }
-    }
-`;
+import {ALL_BOOKS_QUERY} from '../../queries/booksQueries';
 
 class BooksIndex extends React.Component {
 
+  navigateToDetail = (event, book) => {
+    event.preventDefault();
+
+    Router.push(`/books/detail?id=${book.id}`);
+  };
+
   render() {
     return (
-        <div>
+        <div className={'container mt-3'}>
           <Query query={ALL_BOOKS_QUERY}>
             {({data, error, loading}) => {
               console.log(data);
 
               return (
-                  <div>
-                    <h2>{data.books.length} found</h2>
+
+                  <div className={'row'}>
+
+                    <div className="col-12">
+                      <h2>{data.books.length} found</h2>
+                    </div>
+
                     {data.books.map(book => (
-                        <div className={'b-book'} key={book.id}>
-                          <h3>{book.title}</h3>
+                        <div className="col-12 col-sm-4 col-md-2" key={book.id}>
+                          <div className={'b-book mb-4'}>
+                            {/*<h3>{book.title}</h3>*/}
+                            <a onClick={(e) => this.navigateToDetail(e, book)} href={'#'}>
+                              <img src={book.thumbnail} alt={book.title}
+                                   className={'img-fluid'}/>
+                            </a>
+                          </div>
                         </div>
                     ))}
+
                   </div>
               );
             }}
