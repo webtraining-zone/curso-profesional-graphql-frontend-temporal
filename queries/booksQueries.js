@@ -9,3 +9,25 @@ export const ALL_BOOKS_QUERY = gql`
         }
     }
 `;
+
+export const CREATE_BOOK_MUTATION = gql`
+    mutation CREATE_BOOK_MUTATION (
+    $title: String!
+    $description: String
+    $thumbnail: String
+    $image: String
+    ) {
+        createBook(
+            title: $title
+            description: $description
+            image: $image
+            thumbnail: $thumbnail
+        ) {
+            id
+            title
+            description
+            thumbnail
+            image
+        }
+    }
+`;
