@@ -3,6 +3,8 @@ import Router from 'next/router';
 import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
 import Head from 'next/head';
+import ApolloClient from 'apollo-boost';
+import {ALL_BOOKS_QUERY} from '../../queries/booksQueries';
 
 const ONE_BOOK_QUERY = gql`
     query ONE_BOOK_QUERY($id: ID!) {
@@ -18,6 +20,18 @@ const ONE_BOOK_QUERY = gql`
 `;
 
 class BookDetail extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.client = new ApolloClient(
+        {
+          uri: 'http://localhost:4000',
+        });
+
+    this.client.query({
+      query: ALL_BOOKS_QUERY,
+    }).then(data => console.warn(data));
+  }
 
   // OJO: esto parte del ciclio de las páginas de Next.js
   static async getInitialProps({query}) {

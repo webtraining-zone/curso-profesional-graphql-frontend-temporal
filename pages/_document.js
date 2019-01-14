@@ -8,6 +8,9 @@ class MyDocument extends Document {
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
                 integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
                 crossOrigin="anonymous"/>
+          <link rel="icon"
+                type="image/png"
+                href="https://webtraining.zone/favicon.ico"/>
         </Head>
         <body>
           <Main/>

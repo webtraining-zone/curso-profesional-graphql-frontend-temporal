@@ -2,6 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 import {Query} from 'react-apollo';
 import {ALL_BOOKS_QUERY} from '../../queries/booksQueries';
+import DeleteButton from '../../components/common/DeleteButton';
 
 class BooksIndex extends React.Component {
 
@@ -34,6 +35,8 @@ class BooksIndex extends React.Component {
                               <img src={book.thumbnail} alt={book.title}
                                    className={'img-fluid'}/>
                             </a>
+
+                            <DeleteButton id={book.id}>Delete</DeleteButton>
                           </div>
                         </div>
                     ))}
